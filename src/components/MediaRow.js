@@ -4,6 +4,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
+const uploadsUrl = 'https://media-new.mw.metropolia.fi/wbma/uploads/';
+
 const customStyles = {
   content: {
     top: '50%',
@@ -35,7 +37,7 @@ const MediaRow = ({ file }) => {
   return (
     <tr>
       <td>
-        <img src={file.thumbnails.w160} alt={file.title} />
+        <img src={uploadsUrl + file.thumbnails.w160} alt={file.title} />
       </td>
       <td>
         <h3>{file.title}</h3>
@@ -50,7 +52,7 @@ const MediaRow = ({ file }) => {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <img alt={file.title} width="350px" height="350px" src={file.filename} />
+          <img alt={file.title} width="350px" height="350px" src={uploadsUrl + file.filename} />
         </Modal>
       </td>
     </tr>
