@@ -3,6 +3,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const uploadsUrl = 'https://media-new.mw.metropolia.fi/wbma/uploads/';
 
@@ -44,7 +45,7 @@ const MediaRow = ({ file }) => {
         <p>{file.description}</p>
       </td>
       <td>
-        <button type="button" onClick={openModal}>View</button>
+        <button type="button" onClick={openModal}>Modal</button>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -54,6 +55,18 @@ const MediaRow = ({ file }) => {
         >
           <img alt={file.title} width="350px" height="350px" src={uploadsUrl + file.filename} />
         </Modal>
+
+        <Link
+          to={
+            {
+              pathname: '/single',
+              state: file,
+            }
+          }
+        >
+          View
+
+        </Link>
       </td>
     </tr>
   );
