@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 
-const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
+const mediaUrl = 'http://media-new.mw.metropolia.fi/wbma/uploads/';
 
 const Single = ({ location }) => {
   const file = location.state;
-
-  // const file = {}; // TODO in the next task: single media from props.location.state
 
   return (
     <>
@@ -15,13 +13,8 @@ const Single = ({ location }) => {
   );
 };
 
-// TODO in the next task: add propType for location
 Single.propTypes = {
-  location: PropTypes.arrayOf,
-};
-
-Single.defaultProps = {
-  location: '',
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Single;

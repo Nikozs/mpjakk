@@ -38,7 +38,7 @@ const MediaRow = ({ file }) => {
   return (
     <tr>
       <td>
-        <img src={uploadsUrl + file.thumbnails.w160} alt={file.title} />
+        <img src={file.thumbnails ? uploadsUrl + file.thumbnails.w160 : '#'} alt={file.title} />
       </td>
       <td>
         <h3>{file.title}</h3>

@@ -5,8 +5,6 @@
 import MediaRow from './MediaRow';
 import { useAllMedia } from '../hooks/ApiHooks';
 
-// const baseUrl = 'https://media-new.mw.metropolia.fi/wbma/';
-
 const MediaTable = () => {
   const picArray = useAllMedia();
 
