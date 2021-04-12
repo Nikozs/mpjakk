@@ -14,18 +14,21 @@ import { MediaProvider } from './contexts/MediaContext';
 const App = () => (
   <Router basename={process.env.PUBLIC_URL}>
     <MediaProvider>
-      <Container maxWidth="md">
-        <Nav />
-        <main style={{ marginTop: 180 }}>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/home" component={Home} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/single" component={Single} />
-          </Switch>
-        </main>
+      <Nav />
+      <Container
+        maxWidth="md"
+        style={{
+          marginTop: 80, marginBottom: 80,
+        }}
+      >
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/home" component={Home} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/single" component={Single} />
+        </Switch>
       </Container>
     </MediaProvider>
   </Router>

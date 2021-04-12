@@ -1,6 +1,9 @@
 import { withRouter } from 'react-router-dom';
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import {
+  FormControl, Input, InputLabel, Button,
+} from '@material-ui/core';
 import useForm from '../hooks/FormHooks';
 import { useLogin } from '../hooks/ApiHooks';
 import { MediaContext } from '../contexts/MediaContext';
@@ -27,19 +30,26 @@ const LoginForm = ({ history }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        name="username"
-        onChange={handleInputChange}
-        value={inputs.username}
-      />
-      <input
-        name="password"
-        type="password"
-        onChange={handleInputChange}
-        value={inputs.password}
-      />
-      <button type="submit">Login</button>
+      <FormControl style={{ margin: 15 }}>
+        <InputLabel htmlFor="my-input">Username:</InputLabel>
+        <Input
+          name="username"
+          onChange={handleInputChange}
+          value={inputs.username}
+        />
+      </FormControl>
+      <FormControl style={{ margin: 15 }}>
+        <InputLabel htmlFor="my-input2">Password:</InputLabel>
+        <Input
+          name="password"
+          type="password"
+          onChange={handleInputChange}
+          value={inputs.password}
+        />
+      </FormControl>
+      <Button type="submit" style={{ margin: 15 }}>Login</Button>
     </form>
+
   );
 };
 

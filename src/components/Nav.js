@@ -1,43 +1,103 @@
+/* eslint-disable no-undef */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  AppBar, Toolbar,
+  AppBar, Toolbar, Typography, makeStyles, MenuItem, IconButton, Menu,
 } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuIcon from '@material-ui/icons/Menu';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonIcon from '@material-ui/icons/Person';
+import VpnKeyRoundedIcon from '@material-ui/icons/VpnKeyRounded';
 import { MediaContext } from '../contexts/MediaContext';
-// import { AccountCircle } from '@material-ui/icons';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const Nav = () => {
+  const classes = useStyles();
   const [user] = useContext(MediaContext);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <AppBar>
         <Toolbar>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              {user
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
+          </Typography>
+          {user
               && (
               <>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/logout">Logout</Link>
-                </li>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Link style={{ textDecoration: 'none' }} to="/Profile">
+                      <PersonIcon style={{ fontSize: 'small' }} />
+                      Profile
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Link style={{ textDecoration: 'none' }} to="/logout">
+                      <ExitToAppIcon style={{ fontSize: 'small' }} />
+                      Logout
+                    </Link>
+                  </MenuItem>
+                </Menu>
               </>
               )}
-              {!user
+          {!user
               && (
               <>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
+                <Link to="/login" style={{ textDecoration: 'none', color: 'white', fontSize: 'medium' }}>
+                  <VpnKeyRoundedIcon style={{ fontSize: 'medium' }} />
+                  Sign in
+                </Link>
               </>
               )}
-            </ul>
-          </nav>
         </Toolbar>
       </AppBar>
     </>

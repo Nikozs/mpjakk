@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
-
 // import { useState, useEffect } from 'react';
+import Grid from '@material-ui/core/Grid';
 import MediaRow from './MediaRow';
 import { useAllMedia } from '../hooks/ApiHooks';
 
@@ -11,13 +11,21 @@ const MediaTable = () => {
   console.log(picArray);
 
   return (
-    <table>
-      <tbody>
-        {
+    <Grid
+      container
+      direction="column"
+      justify="space-evenly"
+      alignItems="center"
+    >
+      <table>
+        <tbody>
+          {
         picArray.map((item, index) => <MediaRow key={index} file={item} />)
 }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+
+    </Grid>
   );
 };
 

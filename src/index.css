@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: black; */
 }
 
 code {
@@ -22,4 +23,20 @@ table {
 td {
   padding: 1rem;
   border-bottom: #ccc 1px solid;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }

@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable import/prefer-default-export */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { MediaContext } from '../contexts/MediaContext';
 
 const baseUrl = 'https://media-new.mw.metropolia.fi/wbma/';
 
@@ -96,4 +97,33 @@ const useAllMedia = () => {
   return data;
 };
 
-export { useAllMedia, handleRegistering, useLogin };
+const getAvatar = () => {
+  const [data, setData] = useState([]);
+  const [user] = useContext(MediaContext);
+
+  // avatarurl = avatar[0].thumbnails ? uploadsUrl + avatar[0].thumbnails.w160 : '#';
+
+  const url = user ? `${baseUrl}tags/avatar_${user.user_id}` : '';
+
+  const fetchUrl = async () => {
+    const response = await fetch(url);
+    const pics = await response.json();
+
+    const media = await Promise.all(pics.map(async (item) => {
+      const resp = await fetch(`${baseUrl}media/${item.file_id}`);
+      return resp.json();
+    }));
+
+    setData(media);
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+
+  return data;
+};
+
+export {
+  useAllMedia, handleRegistering, useLogin, getAvatar,
+};
