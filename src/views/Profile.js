@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
+import {
+  Card, CardContent, List, ListItem, Typography,
+} from '@material-ui/core';
 import { MediaContext } from '../contexts/MediaContext';
 import { getAvatar } from '../hooks/ApiHooks';
 
@@ -11,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     '& > *': {
       margin: theme.spacing(1),
+      width: '100%',
     },
   },
   small: {
@@ -40,15 +44,28 @@ const Profile = () => {
   const [user] = useContext(MediaContext);
   return (
     <>
-      <h1>Profile</h1>
+      <Typography variant="h4" style={{ color: 'white' }}>Profile</Typography>
       {user
         && (
         <div className={classes.root}>
-          <Avatar alt="Profile image" src={avatarurl} className={classes.large} />
-          <p>{user.full_name}</p>
-          <br />
-          <p>{user.email}</p>
-          <p>{user.username}</p>
+          <Card>
+            <CardContent>
+              <List>
+                <ListItem>
+                  <Avatar alt="Profile image" src={avatarurl} className={classes.large} />
+                </ListItem>
+                <ListItem>
+                  <p>{user.full_name}</p>
+                </ListItem>
+                <ListItem>
+                  <p>{user.email}</p>
+                </ListItem>
+                <ListItem>
+                  <p>{user.username}</p>
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
         </div>
         )}
     </>
