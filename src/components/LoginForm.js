@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
-  FormControl, Input, InputLabel, Button,
+  FormControl, Input, InputLabel, Button, Typography,
 } from '@material-ui/core';
 import useForm from '../hooks/FormHooks';
 import { useLogin } from '../hooks/ApiHooks';
@@ -29,27 +29,29 @@ const LoginForm = ({ history }) => {
   console.log('LoginForm', user);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl style={{ margin: 15 }}>
-        <InputLabel htmlFor="my-input">Username:</InputLabel>
-        <Input
-          name="username"
-          onChange={handleInputChange}
-          value={inputs.username}
-        />
-      </FormControl>
-      <FormControl style={{ margin: 15 }}>
-        <InputLabel htmlFor="my-input2">Password:</InputLabel>
-        <Input
-          name="password"
-          type="password"
-          onChange={handleInputChange}
-          value={inputs.password}
-        />
-      </FormControl>
-      <Button type="submit" style={{ margin: 15 }}>Login</Button>
-    </form>
-
+    <>
+      <Typography variant="h4" style={{ color: 'black' }}>Login:</Typography>
+      <form onSubmit={handleSubmit}>
+        <FormControl style={{ margin: 15 }}>
+          <InputLabel htmlFor="my-input">Username:</InputLabel>
+          <Input
+            name="username"
+            onChange={handleInputChange}
+            value={inputs.username}
+          />
+        </FormControl>
+        <FormControl style={{ margin: 15 }}>
+          <InputLabel htmlFor="my-input2">Password:</InputLabel>
+          <Input
+            name="password"
+            type="password"
+            onChange={handleInputChange}
+            value={inputs.password}
+          />
+        </FormControl>
+        <Button variant="contained" color="primary" type="submit" style={{ margin: 15 }}>Login</Button>
+      </form>
+    </>
   );
 };
 
