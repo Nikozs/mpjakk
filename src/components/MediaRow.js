@@ -37,11 +37,11 @@ const MediaRow = ({ file }) => {
   return (
     <tr>
       <td>
-        <img src={uploadsUrl + file.thumbnails.w160} alt={file.title} />
+        <img src={uploadsUrl + file?.thumbnails?.w160} alt={file?.title} />
       </td>
       <td>
-        <h3>{file.title}</h3>
-        <p>{file.description}</p>
+        <h3>{file?.title}</h3>
+        <p>{file?.description}</p>
       </td>
       <td>
         <button type="button" onClick={openModal}>View</button>
@@ -52,7 +52,7 @@ const MediaRow = ({ file }) => {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <img alt={file.title} width="350px" height="350px" src={uploadsUrl + file.filename} />
+          <img alt={file?.title} width="350px" height="350px" src={uploadsUrl + file?.filename} />
         </Modal>
       </td>
     </tr>
